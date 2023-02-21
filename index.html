@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Data Dashboard">   
+   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   <title>Visual Dashboard</title>
+
+   <!-- Specify js libraries used in script tag below -->
+   <script src="https://d3js.org/d3.v5.min.js"></script>
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <!-- Stylesheet reference -->
+   <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="head-container">
+        <div class="child">                
+            <img id="hlogo" src="static/images/logo_main.png" />
+        </div>
+        <div class="child title">
+            <p id="ptitle">Interactive Visualization Dashboard</p>
+        </div>
+        <div class="child menu">
+            <ul id="ulmenu">        
+                <li onclick="optionClicked(this.id)" id="hotels">HOTELS</li>
+                <li onclick="optionClicked(this.id)" id="beaches">BEACHES</li>
+                <li onclick="optionClicked(this.id)" id="restaurants">RESTAURANTS</li>  
+                <li onclick="optionClicked(this.id)" id="destinations">DESTINATIONS</li>                    
+                <li onclick="optionClicked(this.id)" id="things">THINGS TO DO</li>              
+            </ul>
+        </div>
+    </div>    
+    <div class="main-container">
+        <div class="mainc pic">
+            <ul id="islot"></ul>
+        </div>
+        <div class="mainc chart">
+            <div id="myChart">                
+            </div>            
+        </div>
+        <div class="mainc map">
+            <div id="myMap">
+            </div>
+        </div>
+
+    </div>
+    <!-- javascript references -->
+    <script type="text/javascript" src="static/js/logic.js"></script>
+
+</body>
+</html>
