@@ -6,26 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project 3</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/yeti/bootstrap.min.css">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
-
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
         <h1>Travel Recommendations</h1>
-        <h2>Interactive Visualization Dashboard</h2>
+        <h2>Project 3</h2>
       </div>
     </div>
     <div class="topnav">
       <a class="active" href="#hotel">Hotel</a>
-      <a href="#restaurants">Restuanrant</a>
+      <a href="#restaurants">Restaurant</a>
       <a href="#beaches">Beaches</a>
       <a href="#things">Things To Do</a>
     </div>
     <div class="row">
+      <div class="col-md-12">
+        <div id="bar"></div>
+      </div>
       <div class="col-md-5">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -36,7 +38,7 @@
         </div>
       </div>
       <div class="col-md-5">
-        <div id="map"></div>
+        <div id="image"></div>
       </div>
       <div class="col-md-12">
         <div id="gauge"></div>
@@ -44,14 +46,49 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div id="bubble"></div>
+        <div id="gauge"></div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Destination Info</h3>
+            <div id="description"></div>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="image1"></div>
+      </div>
+      <div class="col-md-12">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="gauge"></div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Destination Info</h3>
+            <div id="description"></div>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="image"></div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="../restaurantdata.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="./static/js/app.js"></script>
+  <script src="../logic.js"></script>
   <!-- <script src="./static/js/bonus.js"></script> -->
   
 </body>
