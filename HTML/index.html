@@ -1,96 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project 3</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/yeti/bootstrap.min.css">
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <head>
+   <meta charset="utf-8">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+   <meta name="description" content="Data Dashboard">   
+   <!-- <meta http-equiv="content-type" content="text/html" /> -->
+   <title>Visual Dashboard</title>
+
+   <!-- Specify js libraries used in script tag below -->
+   <script src="https://d3js.org/d3.v5.min.js"></script>
+   <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+      <!-- Stylesheet reference -->
+   <link rel="stylesheet" href="static/css/style.css" type="text/css">
+   <link rel="shortcut icon" href="#">
 </head>
-
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Travel Recommendations</h1>
-        <h2>Project 3</h2>
-      </div>
-    </div>
-    <div class="topnav">
-      <a class="active" href="#hotel">Hotel</a>
-      <a href="#restaurants">Restaurant</a>
-      <a href="#beaches">Beaches</a>
-      <a href="#things">Things To Do</a>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bar"></div>
-      </div>
-      <div class="col-md-5">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Destination Info</h3>
-            <div id="description"></div>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+    <div class="head-container">
+        <div class="child">                
+            <img id="hlogo" src="static/images/logo_main.png" alt="Logo" />
         </div>
-      </div>
-      <div class="col-md-5">
-        <div id="image"></div>
-      </div>
-      <div class="col-md-12">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="gauge"></div>
-      </div>
-      <div class="col-md-5">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Destination Info</h3>
-            <div id="description"></div>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+        <div class="child title">
+            <p id="ptitle">Interactive Visualization Dashboard</p>
         </div>
-      </div>
-      <div class="col-md-5">
-        <div id="image1"></div>
-      </div>
-      <div class="col-md-12">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="gauge"></div>
-      </div>
-      <div class="col-md-5">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Destination Info</h3>
-            <div id="description"></div>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
+        <div class="child menu">
+            <ul id="ulmenu">        
+                <li id="hotels">HOTELS</li>
+                <li id="beaches">BEACHES</li>
+                <li id="restaurants">RESTAURANTS</li>  
+                <li id="destinations">DESTINATIONS</li>                    
+                <li id="things">THINGS TO DO</li>              
+            </ul>
         </div>
-      </div>
-      <div class="col-md-5">
-        <div id="image"></div>
-      </div>
-    </div>
-      </div>
-    </div>
-  </div>
+    </div>    
+    <div class="main-container">
+        <div class="mainc pic">
+            <ul id="islot"></ul>
+        </div>
+        <div class="mainc chart">
+            <div id="myChart">                
+            </div>            
+        </div>
+        <div class="mainc map">
+            <div id="myMap">
+            </div>
+        </div>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="../restaurantdata.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="../logic.js"></script>
-  <!-- <script src="./static/js/bonus.js"></script> -->
-  
+    </div>
+    <!-- javascript references -->
+    <script type="text/javascript" src="static/data/beaches.json"></script>
+    <script type="text/javascript" src="static/js/logic.js"></script>
+
 </body>
-
 </html>
