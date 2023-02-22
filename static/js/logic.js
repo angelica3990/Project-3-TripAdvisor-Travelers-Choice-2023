@@ -70,9 +70,136 @@ function buildBeachInfo() {
 
     Plotly.newPlot('myChart', data, layout);
     
+
     
 
     //Populate map section
 
 }
 
+
+function buildHotelInfo() {
+    // Populate image section
+    let unpicList = d3.select('#islot');
+    for (i=0; i < cnt; i++) {
+        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
+        unpicList.append('h3').text(cData[i].name)
+        unpicList.append('p').text(cData[i].desc)
+    }
+
+    // Populate chart section (using Plotly)
+    var v = ['6', '14', '29', '144', '4777'];
+    let data = [{
+        values: [6, 14, 29, 144, 4777],
+        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
+        domain: {column: 0},
+        hoverinfo: 'label+percent+value',    
+        text: v,
+        textposition: 'inside',
+        hole: .5,
+        type: 'pie'
+    }];
+
+    let layout = {
+        title: 'Customer Review Counts',
+        annotations: [
+            {font: {size: 20}, showarrow: false, text: '4970', textposition: 'inside'}
+        ],
+        height: 400,
+        width: 400,        
+        showlegend: true,
+        grid: {rows: 1, columns: 1}
+    };
+
+    Plotly.newPlot('myChart', data, layout);
+    
+
+    
+
+    //Populate map section
+
+}
+
+function buildRestaurantsInfo() {
+    // Populate image section
+    let unpicList = d3.select('#islot');
+    for (i=0; i < cnt; i++) {
+        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
+        unpicList.append('h3').text(cData[i].name)
+        unpicList.append('p').text(cData[i].desc)
+    }
+
+    // Populate chart section (using Plotly)
+    var v = ['2', '8', '15', '105', '1359'];
+    let data = [{
+        values: [2, 8, 15, 105, 1359],
+        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
+        domain: {column: 0},
+        hoverinfo: 'label+percent+value',    
+        text: v,
+        textposition: 'inside',
+        hole: .5,
+        type: 'pie'
+    }];
+
+    let layout = {
+        title: 'Customer Review Counts',
+        annotations: [
+            {font: {size: 20}, showarrow: false, text: '1505', textposition: 'inside'}
+        ],
+        height: 400,
+        width: 400,        
+        showlegend: true,
+        grid: {rows: 1, columns: 1}
+    };
+
+    Plotly.newPlot('myChart', data, layout);
+    
+
+    
+
+    //Populate map section
+
+}
+
+function buildThings() {
+    // Populate image section
+    let unpicList = d3.select('#islot');
+    for (i=0; i < cnt; i++) {
+        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
+        unpicList.append('h3').text(cData[i].name)
+        unpicList.append('p').text(cData[i].desc)
+    }
+
+    // Populate chart section (using Plotly)
+    var v = ['22', '40', '95', '535', '14334'];
+    let data = [{
+        values: [22, 40, 95, 535, 14334],
+        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
+        domain: {column: 0},
+        hoverinfo: 'label+percent+value',    
+        text: v,
+        textposition: 'inside',
+        hole: .5,
+        type: 'pie'
+    }];
+
+    let layout = {
+        title: 'Customer Review Counts',
+        annotations: [
+            {font: {size: 20}, showarrow: false, text: '15026', textposition: 'inside'}
+        ],
+        height: 400,
+        width: 400,        
+        showlegend: true,
+        grid: {rows: 1, columns: 1}
+    };
+
+    Plotly.newPlot('myChart', data, layout);
+    
+
+    
+
+    //Populate map section
+
+}
