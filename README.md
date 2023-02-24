@@ -3,6 +3,14 @@
 
 Do you like to travel? In this project, we are using the data collected from Tripadvisor's top 25 Traveler’s Choice Awards to make an interactive dashboard.
 
+# Table of contents
+
+- [About the Project](#about-the-project)
+- [Language Used](#language-used)
+- [Import to Database](#import-to-database)
+- [Processing Data for Visualization](#processing-data-for-visualization)
+
+
 # Language Used
 * Python: Beautiful Soup, Pandas, SQL Alchemy
 * Javascript
@@ -70,12 +78,12 @@ create table data (
     latitude float(24),
     longitude float(24),
     rate float(24),
-    total_reviews varchar,
-    excellent varchar,
-    very_good varchar,
-    average varchar,
-    poor varchar,
-    terrible varchar
+    total_reviews int,
+    excellent int,
+    very_good int,
+    average int,
+    poor int,
+    terrible int
 );
 ```
 
