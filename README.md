@@ -56,8 +56,39 @@ Each category (except destinations) has two files:
 
 
 # Import to Database
-Import the all_merged.csv into the Postgresql database using SQL Alchemy
+1. Create a database called `Project3` in PostgrSQL
+2. Create a table called data under the `Project3` database
+```
+create table data (
+   id varchar primary key,
+   category varchar,
+   rank int,
+    name varchar,
+   location varchar,
+    imageurl varchar,
+    description varchar,
+    latitude float(24),
+    longitude float(24),
+    rate float(24),
+    total_reviews varchar,
+    excellent varchar,
+    very_good varchar,
+    average varchar,
+    poor varchar,
+    terrible varchar
+);
+```
+
+3. Import the merged data frame into the Postgresql database using Python (SQL Alchemy)
 
 
 
 # Processing Data for Visualization
+
+1. Use Javascript to populate leaflet maps for each items/locations in the Top 25 Traveler’s Choice
+
+2. Use Javascript to create donut charts that displays the ratings
+
+3. Use Javascript to loop through the image urls and display the images in the dashbaord
+
+4. Cooperate with HTML and CSS to finish iour dashbaord
