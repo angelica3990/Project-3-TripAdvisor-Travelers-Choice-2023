@@ -88,7 +88,7 @@ body {
 }
 #islot {
     list-style-type: none;
-    padding-inline-start: 5px;
+    padding-inline-start: 2px;
 }
 #pics {
     height: 400px;
@@ -104,18 +104,18 @@ body {
 #myChart * .funnelarealayer {
     width: 300px;
 /*     height: 400px; */
-    padding-inline-start: 5px;
+    padding-inline-start: 2px;
 }
 #map {
     width: 650px;
     height: 450px;
     vertical-align:-webkit-baseline-middle;
     display: inline-block;
-    padding-inline-start: 5px;
+    padding-inline-start: 2px;
 }
 .plot-container plotly {
-    margin-top: 5px;
+    margin-top: 2px;
 }
 .user-select-none svg-container {
-    margin-top: 5px;
+    margin-top: 2px;
 }
