@@ -1,205 +1,202 @@
-var cnt = 3;
-var sData = [];  // Should declare variables for values for different datasets to hold hotels.json, beaches.json... and use in functions
+// Declare global variables to hold datasets populated in init
+var beachInfo = [];
+var hotelInfo = [];
+var restaurantInfo = [];
+var thingsInfo = [];
+var destinationInfo = [];
+// height used to set height of donut chart section based on category
+var height = 0;
+var selCategory = "";
 
-for (i=0; i < cnt; i++) {
-    if (i == 0) {
-         sData.push({'pic': 'https://media-cdn.tripadvisor.com/media/photo-o/03/ca/1d/ec/grace-bay.jpg',
-                'name': 'Pic1', 'desc': "Desc1 this is pic1"});
-    }       
-    if (i == 1) {
-        sData.push({'pic': 'https://media-cdn.tripadvisor.com/media/photo-s/16/23/47/10/img-20190108-120940-largejpg.jpg',
-                'name': 'Pic2', 'desc': "Desc2 this is pic2"});
-    }  
-    if (i == 2) {
-        sData.push({'pic': 'https://media-cdn.tripadvisor.com/media/photo-s/10/c3/13/f6/amazing-reef-and-colour.jpg',
-               'name': 'Pic3', 'desc': "Desc3 this is pic3"});
-    }
-}
-const cData = sData;   // Preparing var and moving to 'const' to be able to access in all functions - clarify with Alejandro
+// select unordered list id
+let menuLnk = d3.select("#ulmenu")
 
-function optionClicked(oid) {
-    if (oid == 'beaches') {
-       buildBeachInfo();
-     }
-    else if (oid == 'hotels') {
-        buildHotelInfo();
+// function to handle click event of menu list
+function handleClick() {
+    
+    targetId = d3.event.target.id;
+    let dataSet = [];
+
+    if (targetId == 'beaches') {
+       dataSet = beachInfo;
+       height = 12922;        
     }
-    else if (oid == 'restaurants') {
-        buildRestaurantsInfo();
+    else if (targetId == 'hotels') {
+        dataSet = hotelInfo;
+        height = 12771;
+    }
+    else if (targetId == 'restaurants') {
+        dataSet = restaurantInfo;
+        height = 12771;
     }    
-    else if (oid == 'things') {
-        buildThings();
+    else if (targetId == 'things') {
+        dataSet = thingsInfo;
+        height = 12808; 
     }
-    else if (oid == 'destinations') {
-        buildDestinations();
-    }
+    else if (targetId == 'destinations') {
+        dataSet = destinationInfo;
+        height = 15009;
+    };
+    selCategory = targetId;
+    
+    buildPageSections(dataSet);
+    buildChartSection(dataSet);
+    buildMapSection(dataSet);
+    
+}
+
+// Event handler for click of menu list items
+menuLnk.on('click', handleClick);
+    
+
+// function to build Section 1 - images, name and description ==============================================================================
+function buildPageSections(catData) {    
+    
+    // Clear nodes built earlier
+    let unpicList = d3.select('#islot');
+    let chrt = d3.select('#myChart');
+
+    // Remove all links under the id (populated from earlier views)
+    d3.select('#islot').selectAll("li").remove();
+    d3.select('#islot').selectAll("h3").remove();
+    d3.select('#islot').selectAll("p").remove();
+
+    // Remove any chart data already built     
+    d3.select('#myChart').selectAll("div").remove();
+    d3.select('#myChart').selectAll("svg").remove();
+    d3.select('#myChart').selectAll("defs").remove();
+    d3.select('#myChart').selectAll("g").remove();
+    
+    // loop thru category dataset and add list items with images
+    for (i=0; i < catData.length; i++) {   
+        console.log(catData[i]['name']);
+        console.log(catData);
+
+        
+        let rankName = "";
+        if ((catData[i].name == "") || (catData[i].location == catData[i].name)) {
+            rankName = catData[i].rank.toString().concat(". ").concat(catData[i].location)
+        }
+        else {
+            rankName = catData[i].rank.toString().concat(". ").concat(catData[i].name).concat(" (").concat(catData[i].location).concat(")")
+        }
+
+        unpicList.append('li').append('img').attr("id", "pics").attr("src", catData[i].imageurl).attr('alt', 'Not Available')
+        unpicList.append('h3').attr("id", "rankName").text(rankName)
+        unpicList.append('p').attr("id", "imgDesc").text(catData[i].description)
+
+    };
 };
 
-function buildBeachInfo() {
-    // Populate image section
-    let unpicList = d3.select('#islot');
-    for (i=0; i < cnt; i++) {
-        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
-        unpicList.append('h3').text(cData[i].name)
-        unpicList.append('p').text(cData[i].desc)
-    }
+// Section 2 - charts for reviews display ==================================================================================================
+function buildChartSection(catData) {
 
-    // Populate chart section (using Plotly)
-    var v = ['16', '26', '128', '635', '6574'];
-    let data = [{
-        values: [16, 26, 128, 635, 6574],
-        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
-        domain: {column: 0},
-        hoverinfo: 'label+percent+value',    
-        text: v,
-        textposition: 'inside',
-        hole: .5,
-        type: 'pie'
-    }];
+    let data = [];    
+    let legendGroup = "";
+    let rowNum = 0;
+    let rvwLabels = ['Excellent', 'Very Good', 'Average', 'Poor', 'Terrible'];
+    // let colorPallette = ['#4dac26', '#b8e186', '#f7f7f7', '#f1b6da', '#d01c8b'];
+    let colorPallette = ['#08519c', '#3182bd', '#6baed6', '#bdd7e7', '#eff3ff'];
+
+    for (i=0; i < catData.length; i++) {
+        let dict = {};
+        let rvwValues = [];        
+        let rvwTotal = "";
+        rowNum = i;
+        legendGroup = rowNum.toString();
+        rvwTotal = catData[i]['total_reviews'].toString() + '<br>' + catData[i].rate.toString();
+        rvwValues.push(catData[i]['excellent']);
+        rvwValues.push(catData[i]['very_good']);
+        rvwValues.push(catData[i]['average']);
+        rvwValues.push(catData[i]['poor']);
+        rvwValues.push(catData[i]['terrible']);
+
+        dict = {
+            values: rvwValues,
+            labels: rvwLabels,
+            hoverinfo: 'label+percent+value',
+            text: rvwValues,            
+            textposition: 'inside',
+            title: {text: rvwTotal, font: {size: 25, family:'Poppins, sans-serif', color: 'white'}},
+            marker: {colors: colorPallette },    //include for outline "line: {color: 'black', width: 1}"
+            domain: {row: rowNum, column: 0},
+            legendgroup: legendGroup,
+            hole: .5,
+            type: 'pie'
+        };
+        data.push(dict);        
+    };
 
     let layout = {
         title: 'Customer Review Counts',
-        annotations: [
-            {font: {size: 20}, showarrow: false, text: '7378', textposition: 'inside'}
-        ],
-        height: 400,
-        width: 400,        
-        showlegend: true,
-        grid: {rows: 1, columns: 1}
-    };
-
-    Plotly.newPlot('myChart', data, layout);
-    
-
-    
-
-    //Populate map section
-
-}
-
-
-function buildHotelInfo() {
-    // Populate image section
-    let unpicList = d3.select('#islot');
-    for (i=0; i < cnt; i++) {
-        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
-        unpicList.append('h3').text(cData[i].name)
-        unpicList.append('p').text(cData[i].desc)
+        height: height,
+        width: 400,
+        showlegend: false,
+        grid: {rows: 25, columns: 1, pattern: 'independent', roworder: 'top to bottom'},
+        annotations: {font: {size: 25, weight: 'bold', color: 'white'}, showarrow: true}, 
+        legend: {tracegroupgap: 350, xanchor: 'right', yanchor: 'center', x: 1.5, y: 0.5},
+        paper_bgcolor: '#34495E',    
+        margin: {'t': 50, 'b': 0, 'l': '50', 'r': 50}                   
     }
+    
+    Plotly.newPlot('myChart', data, layout)
+};
+   
 
-    // Populate chart section (using Plotly)
-    var v = ['6', '14', '29', '144', '4777'];
-    let data = [{
-        values: [6, 14, 29, 144, 4777],
-        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
-        domain: {column: 0},
-        hoverinfo: 'label+percent+value',    
-        text: v,
-        textposition: 'inside',
-        hole: .5,
-        type: 'pie'
-    }];
+// Section 3 - build leaflet map and mark location based on lat and lon =================================================================
+function buildMapSection(catData) {
 
-    let layout = {
-        title: 'Customer Review Counts',
-        annotations: [
-            {font: {size: 20}, showarrow: false, text: '4970', textposition: 'inside'}
-        ],
-        height: 400,
-        width: 400,        
-        showlegend: true,
-        grid: {rows: 1, columns: 1}
+    // Set map container to null to clear previous loads
+    var container = L.DomUtil.get('myMap');
+    if(container != null) {        
+        container._leaflet_id = null;
     };
 
-    Plotly.newPlot('myChart', data, layout);
+    var map = L.map("myMap", { 
+        center: [20, 10],
+        zoom: 2
+    });
+
+    // Add the tile layer that will be the background of map.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
     
+    // create markers - bind popup
+    for (i=0; i < catData.length; i++) {
+        let lat = catData[i].latitude;
+        let lon = catData[i].longitude;
+        let locMarker = L.marker([lat, lon]);
+        locMarker.bindPopup("<h3>" + catData[i]['rank'] + "</h3><h3> " + catData[i]['location'] + "</h3>");
+        locMarker.addTo(map);        
+    };     
 
+};
+
+function init() {
+
+    // read json files and store in variables for use later
+    // Note: for very large datasets storing is not adviseable - read and populate when required
+    d3.json("static/data/beaches.json").then(function(data) {
+        beachInfo = data;                  
+    })
+
+    d3.json("static/data/hotels.json").then(function(data) {
+        hotelInfo = data;              
+    })
+
+    d3.json("static/data/things.json").then(function(data) {
+        thingsInfo = data;               
+    })
+
+    d3.json("static/data/restaurants.json").then(function(data) {
+        restaurantInfo = data;                
+    })
+
+    d3.json("static/data/destinations.json").then(function(data) {
+        destinationInfo = data;                
+    })    
     
+};
 
-    //Populate map section
-
-}
-
-function buildRestaurantsInfo() {
-    // Populate image section
-    let unpicList = d3.select('#islot');
-    for (i=0; i < cnt; i++) {
-        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
-        unpicList.append('h3').text(cData[i].name)
-        unpicList.append('p').text(cData[i].desc)
-    }
-
-    // Populate chart section (using Plotly)
-    var v = ['2', '8', '15', '105', '1359'];
-    let data = [{
-        values: [2, 8, 15, 105, 1359],
-        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
-        domain: {column: 0},
-        hoverinfo: 'label+percent+value',    
-        text: v,
-        textposition: 'inside',
-        hole: .5,
-        type: 'pie'
-    }];
-
-    let layout = {
-        title: 'Customer Review Counts',
-        annotations: [
-            {font: {size: 20}, showarrow: false, text: '1505', textposition: 'inside'}
-        ],
-        height: 400,
-        width: 400,        
-        showlegend: true,
-        grid: {rows: 1, columns: 1}
-    };
-
-    Plotly.newPlot('myChart', data, layout);
-    
-
-    
-
-    //Populate map section
-
-}
-
-function buildThings() {
-    // Populate image section
-    let unpicList = d3.select('#islot');
-    for (i=0; i < cnt; i++) {
-        unpicList.append('li').append('img').attr("id", "pics").attr("src", cData[i].pic).attr('alt', 'Not Available')
-        unpicList.append('h3').text(cData[i].name)
-        unpicList.append('p').text(cData[i].desc)
-    }
-
-    // Populate chart section (using Plotly)
-    var v = ['22', '40', '95', '535', '14334'];
-    let data = [{
-        values: [22, 40, 95, 535, 14334],
-        labels: ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'],
-        domain: {column: 0},
-        hoverinfo: 'label+percent+value',    
-        text: v,
-        textposition: 'inside',
-        hole: .5,
-        type: 'pie'
-    }];
-
-    let layout = {
-        title: 'Customer Review Counts',
-        annotations: [
-            {font: {size: 20}, showarrow: false, text: '15026', textposition: 'inside'}
-        ],
-        height: 400,
-        width: 400,        
-        showlegend: true,
-        grid: {rows: 1, columns: 1}
-    };
-
-    Plotly.newPlot('myChart', data, layout);
-    
-
-    
-
-    //Populate map section
-
-}
+init();
