@@ -56,7 +56,7 @@ Each category (except destinations) has two files:
 
 
 # Import to Database
-1. Create a database called `Project3` in PostgrSQL
+1. Create a database called `Project3` in PostgreSQL
 2. Create a table called data under the `Project3` database
 ```
 create table data (
@@ -91,4 +91,4 @@ create table data (
 
 3. Use Javascript to loop through the image urls and display the images in the dashbaord
 
-4. Cooperate with HTML and CSS to finish iour dashbaord
+4. Cooperate with HTML and CSS to finish our dashbaord
