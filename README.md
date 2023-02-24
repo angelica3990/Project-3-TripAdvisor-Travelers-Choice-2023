@@ -48,7 +48,7 @@ Each category (except destinations) has two files:
 * reviews
 ### 4. Read the CSV files in Jupyter Notebook and clean the data
 
-* Concatenate `Category` and `Rank` to create a new column called `ID` for data and reviews
+* Concatenate `Category` and `Rank` to create a new column called `ID` as unique ID for both data and reviews files
 * Use the `ID` column as the primary key and merge data and reviews data frames for each category
 * Drop `review_url` column in each data frame
 
