@@ -7,6 +7,7 @@ Do you like to travel? In this project, we are using the data collected from Tri
 
 - [About the Project](#about-the-project)
 - [Language Used](#language-used)
+- [Preparing the Data](#preparing-the-data)
 - [Import to Database](#import-to-database)
 - [Processing Data for Visualization](#processing-data-for-visualization)
 
@@ -19,7 +20,7 @@ Do you like to travel? In this project, we are using the data collected from Tri
 * PostgreSQL
 
 
-# Getting Started(Preparing the Data)
+# Preparing the Data
 
 ### 1. Source of data:
 
