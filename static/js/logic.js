@@ -19,19 +19,19 @@ function handleClick() {
 
     if (targetId == 'beaches') {
        dataSet = beachInfo;
-       height = 12922;        
+       height = 12991;        
     }
     else if (targetId == 'hotels') {
         dataSet = hotelInfo;
-        height = 12771;
+        height = 12923;
     }
     else if (targetId == 'restaurants') {
         dataSet = restaurantInfo;
-        height = 12771;
+        height = 12926;
     }    
     else if (targetId == 'things') {
         dataSet = thingsInfo;
-        height = 12808; 
+        height = 13350; 
     }
     else if (targetId == 'destinations') {
         dataSet = destinationInfo;
@@ -40,7 +40,9 @@ function handleClick() {
     selCategory = targetId;
     
     buildPageSections(dataSet);
-    buildChartSection(dataSet);
+    if (selCategory != 'destinations') {
+        buildChartSection(dataSet);
+    };
     buildMapSection(dataSet);
     
 }
@@ -69,10 +71,7 @@ function buildPageSections(catData) {
     
     // loop thru category dataset and add list items with images
     for (i=0; i < catData.length; i++) {   
-        console.log(catData[i]['name']);
-        console.log(catData);
-
-        
+               
         let rankName = "";
         if ((catData[i].name == "") || (catData[i].location == catData[i].name)) {
             rankName = catData[i].rank.toString().concat(". ").concat(catData[i].location)
@@ -95,8 +94,11 @@ function buildChartSection(catData) {
     let legendGroup = "";
     let rowNum = 0;
     let rvwLabels = ['Excellent', 'Very Good', 'Average', 'Poor', 'Terrible'];
-    // let colorPallette = ['#4dac26', '#b8e186', '#f7f7f7', '#f1b6da', '#d01c8b'];
-    let colorPallette = ['#08519c', '#3182bd', '#6baed6', '#bdd7e7', '#eff3ff'];
+    // let colorPallette = ['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']; pink shade
+    // let colorPallette = ['#4dac26', '#b8e186', '#f7f7f7', '#f1b6da', '#d01c8b']; combo shades
+    // let colorPallette = ['#08519c', '#3182bd', '#6baed6', '#bdd7e7', '#eff3ff']; blue shade
+    // let colorPallette = ['#993404', '#d95f0e', '#fe9929', '#fed98e', '#ffffd4']; brown shade
+    let colorPallette = ['#e6f5c9', '#f4cae4', '#cbd5e8', '#fdcdac', '#b3e2cd'];
 
     for (i=0; i < catData.length; i++) {
         let dict = {};
@@ -117,7 +119,7 @@ function buildChartSection(catData) {
             hoverinfo: 'label+percent+value',
             text: rvwValues,            
             textposition: 'inside',
-            title: {text: rvwTotal, font: {size: 25, family:'Poppins, sans-serif', color: 'white'}},
+            title: {text: rvwTotal, font: {size: 25, family:'Poppins, sans-serif', color: 'black'}},
             marker: {colors: colorPallette },    //include for outline "line: {color: 'black', width: 1}"
             domain: {row: rowNum, column: 0},
             legendgroup: legendGroup,
@@ -133,9 +135,9 @@ function buildChartSection(catData) {
         width: 400,
         showlegend: false,
         grid: {rows: 25, columns: 1, pattern: 'independent', roworder: 'top to bottom'},
-        annotations: {font: {size: 25, weight: 'bold', color: 'white'}, showarrow: true}, 
+        annotations: {font: {size: 25, weight: 'bold'}, showarrow: true}, //color: 'white' in font if bg color changed
         legend: {tracegroupgap: 350, xanchor: 'right', yanchor: 'center', x: 1.5, y: 0.5},
-        paper_bgcolor: '#34495E',    
+        // paper_bgcolor: '#34495E',    
         margin: {'t': 50, 'b': 0, 'l': '50', 'r': 50}                   
     }
     
@@ -148,7 +150,7 @@ function buildMapSection(catData) {
 
     // Set map container to null to clear previous loads
     var container = L.DomUtil.get('myMap');
-    if(container != null) {        
+    if (container != null) {        
         container._leaflet_id = null;
     };
 
