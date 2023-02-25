@@ -46,7 +46,7 @@ from pathlib import Path
 import requests
 import json
 
-# Import geoapify api key
+# Import geoapify api key (to get latitude and longitude for leaflet maps)
 from config import geoapify_key
 ```
 
@@ -92,12 +92,26 @@ create table data (
 
 
 
-# Processing Data for Visualization
+# Processing Data for Interactive Visualization
 
-1. Use Javascript to populate leaflet maps for each items/locations in the Top 25 Traveler’s Choice
+1. Dashboard with menu option to select category for viewing the data
 
-2. Use Javascript to create donut charts that displays the ratings
+2. Use Javascript to populate leaflet map for the category chosen with markers for each locations in the Top 25 for the category
 
-3. Use Javascript to loop through the image urls and display the images in the dashbaord
+3. Use Plotly to create donut charts that displays the count of customer reviews (categorized for Excellent, Very Good, Average, Poor and Terrible)
 
-4. Cooperate with HTML and CSS to finish our dashbaord
+4. Use d3.js to build list of images from the image url scrapped and display the images
+
+5. Cooperate with HTML and custom CSS to finish our dashbaord
+
+
+
+# Main Takeawys from this project
+
+1. Planned for a visualization exercise covering many skillsets
+
+2. ETL covering web scraping, API, data wrangling and handling multiple formats of data (csv, json, SQL)
+
+3. Beautiful visualization from dashboard using javascript libraries d3, leaflet and Plotly
+
+4. Web rendering using custom HTML and css
