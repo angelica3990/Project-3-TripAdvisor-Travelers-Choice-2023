@@ -28,7 +28,7 @@ body {
 .head-container {    
     display: grid;
     height: 70px;
-    grid-template-columns: 7% 43% 50%;
+    grid-template-columns: 7% 33% 60%;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
     color: #000000;
@@ -61,7 +61,7 @@ body {
     grid-template-columns: 17% 17% 22% 22% 22%;
     list-style-type: none;
     font-size: 16px;
-    font-weight: 600;   
+    font-weight: 800;   
     align-items: center; 
     height: 40px;
 }
@@ -90,9 +90,9 @@ body {
     list-style-type: none;
     padding-inline-start: 2px;
 }
-#pics {
-    height: 400px;
+#pics {    
     width: 550px;
+    height: 400x;
 }
 #rankName {
     width: 550px;
@@ -102,14 +102,14 @@ body {
     font-weight: normal;
 }
 #myChart * .funnelarealayer {
-    width: 300px;
+    width: 400px;
 /*     height: 400px; */
     padding-inline-start: 2px;
 }
-#map {
+#myMap {
     width: 650px;
-    height: 450px;
-    vertical-align:-webkit-baseline-middle;
+    height: 400px;
+    vertical-align: top;
     display: inline-block;
     padding-inline-start: 2px;
 }
