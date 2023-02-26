@@ -148,6 +148,8 @@ function buildChartSection(catData) {
 // Section 3 - build leaflet map and mark location based on lat and lon =================================================================
 function buildMapSection(catData) {
 
+    
+
     // Set map container to null to clear previous loads
     var container = L.DomUtil.get('myMap');
     if (container != null) {        
@@ -164,16 +166,25 @@ function buildMapSection(catData) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     
+         // Add the tile layer that will be the background of map.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
     // create markers - bind popup
     for (i=0; i < catData.length; i++) {
         let lat = catData[i].latitude;
         let lon = catData[i].longitude;
-        let locMarker = L.marker([lat, lon]);
-        locMarker.bindPopup("<h3>" + catData[i]['rank'] + "</h3><h3> " + catData[i]['location'] + "</h3>");
+        let icon = L.divIcon({
+            className: 'custom-marker',
+            html: '<div class="marker-label">' + catData[i]['rank'] + '</div>',
+            iconSize: [30, 30]
+        });
+        let locMarker = L.marker([lat, lon], { icon: icon });
+        locMarker.bindPopup("<h1> Rank: " + catData[i]['rank'] + "<h2> Name: " + catData[i]['name'] +"</h2><h2> Location: " + catData[i]['location'] + "</h2><h3>" + catData[i]['description']);
         locMarker.addTo(map);        
-    };     
-
-};
+    };
+}
 
 function init() {
 
