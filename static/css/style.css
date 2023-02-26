@@ -135,3 +135,6 @@ body {
 .user-select-none svg-container {
     margin-top: 2px;
 }
+.main-svg {
+    margin-top: 5px;
+}
