@@ -98,7 +98,7 @@ function buildChartSection(catData) {
     // let colorPallette = ['#4dac26', '#b8e186', '#f7f7f7', '#f1b6da', '#d01c8b']; combo shades
     // let colorPallette = ['#08519c', '#3182bd', '#6baed6', '#bdd7e7', '#eff3ff']; blue shade
     // let colorPallette = ['#993404', '#d95f0e', '#fe9929', '#fed98e', '#ffffd4']; brown shade
-    let colorPallette = ['#e6f5c9', '#f4cae4', '#cbd5e8', '#fdcdac', '#b3e2cd'];
+    let colorPallette = ['#33DFA1', '#384B42', '#9BB0A5', '#00D2FF', '#009CF6'];
 
     for (i=0; i < catData.length; i++) {
         let dict = {};
@@ -136,8 +136,8 @@ function buildChartSection(catData) {
         showlegend: false,
         grid: {rows: 25, columns: 1, pattern: 'independent', roworder: 'top to bottom'},
         annotations: {font: {size: 25, weight: 'bold'}, showarrow: true}, //color: 'white' in font if bg color changed
-        legend: {tracegroupgap: 350, xanchor: 'right', yanchor: 'center', x: 1.5, y: 0.5},
-        // paper_bgcolor: '#34495E',    
+        legend: {tracegroupgap: 200, xanchor: 'right', yanchor: 'center', x: 1.5, y: 0.5},
+        //paper_bgcolor: '#D3D3D3',    
         margin: {'t': 50, 'b': 0, 'l': '50', 'r': 50}                   
     }
     
@@ -190,23 +190,23 @@ function init() {
 
     // read json files and store in variables for use later
     // Note: for very large datasets storing is not adviseable - read and populate when required
-    d3.json("static/data/beaches.json").then(function(data) {
+    d3.json("json/beaches_merged.json").then(function(data) {
         beachInfo = data;                  
     })
 
-    d3.json("static/data/hotels.json").then(function(data) {
+    d3.json("json/hotels_merged.json").then(function(data) {
         hotelInfo = data;              
     })
 
-    d3.json("static/data/things.json").then(function(data) {
+    d3.json("json/things_merged.json").then(function(data) {
         thingsInfo = data;               
     })
 
-    d3.json("static/data/restaurants.json").then(function(data) {
+    d3.json("json/hotels_merged.json").then(function(data) {
         restaurantInfo = data;                
     })
 
-    d3.json("static/data/destinations.json").then(function(data) {
+    d3.json("json/destinations.json").then(function(data) {
         destinationInfo = data;                
     })    
     
