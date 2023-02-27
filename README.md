@@ -124,3 +124,5 @@ create table data (
 3. Beautiful visualization from dashboard using javascript libraries d3, leaflet and Plotly subplots
 
 4. Web rendering using custom HTML and css
+
+<img align=left src="https://github.com/angelica3990/Project-3-TripAdvisor-Travelers-Choice-2023/blob/main/images/dashboard.png">
