@@ -1,10 +1,18 @@
-<img align=left src="https://github.com/geethakan/Proj3-Interactive-Dashboard/blob/main/static/images/logoandtext.png">
+<img align=left src="https://github.com/angelica3990/Project-3-TripAdvisor-Travelers-Choice-2023/blob/main/images/logoandtext.png">
+
 # Project-3-TripAdvisor-Travelers-Choice-2023
-# About the Project
+## About the Project
 
-Do you like to travel? In this project, we are using the data collected from Tripadvisor's top 25 Traveler’s Choice Awards to make an interactive dashboard.
+Do you like to travel? In this group project, we are using the data collected from Tripadvisor's top 25 Traveler’s Choice Awards to make an interactive dashboard.
 
-# Table of contents
+
+## Contributors
+  
+- Geetha Kandukuri
+- Anjelica Hussar
+- Jasmine Huang
+
+## Table of contents
 
 - [About the Project](#about-the-project)
 - [Language Used](#language-used)
@@ -13,7 +21,7 @@ Do you like to travel? In this project, we are using the data collected from Tri
 - [Processing Data for Visualization](#processing-data-for-visualization)
 
 
-# Language Used
+## Language Used
 * Python: Beautiful Soup, Pandas, SQL Alchemy
 * Javascript
 * HTML
