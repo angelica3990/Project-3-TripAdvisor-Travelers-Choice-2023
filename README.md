@@ -1,3 +1,4 @@
+<img align=left src="https://github.com/geethakan/Proj3-Interactive-Dashboard/blob/main/static/images/logoandtext.png">
 # Project-3-TripAdvisor-Travelers-Choice-2023
 # About the Project
 
@@ -106,12 +107,12 @@ create table data (
 
 
 
-# Main Takeawys from this project
+# Main Takeaways from this project
 
 1. Planned for a visualization exercise covering many skillsets
 
 2. ETL covering web scraping, API, data wrangling and handling multiple formats of data (csv, json, SQL)
 
-3. Beautiful visualization from dashboard using javascript libraries d3, leaflet and Plotly
+3. Beautiful visualization from dashboard using javascript libraries d3, leaflet and Plotly subplots
 
 4. Web rendering using custom HTML and css
