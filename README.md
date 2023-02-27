@@ -9,7 +9,7 @@ Do you like to travel? In this group project, we are using the data collected fr
 ## Contributors
   
 - Geetha Kandukuri
-- Anjelica Hussar
+- Angelica Hussar
 - Jasmine Huang
 
 ## Table of contents
